@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 20 14.3% 4.1%;
+  --foreground: 60 9.1% 97.8%;
+  --primary: 142.1 70.6% 45.3%;
+  --primary-foreground: 144.9 80.4% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 12 6.5% 15.1%;
+  --accent-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --blue: 214 100% 48%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-[hsl(var(--blue))] text-[hsl(var(--secondary-foreground))]
+    hover:opacity-90;
+  }
+
+  .btn-win {
+    @apply border-2 border-[hsl(var(--primary))] text-[hsl(var(--primary))]
+    hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))];
+  }
+
+  .btn-win-selected {
+    @apply bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))];
+  }
+
+  .btn-secondary {
+    @apply bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))];
+  }
+
+  .card {
+    @apply bg-[hsl(var(--secondary))] rounded-xl p-6 shadow-lg;
+  }
+
+  .input {
+    @apply bg-[hsl(var(--muted))] border border-[hsl(var(--border))]
+    rounded-lg px-3 py-2 text-[hsl(var(--foreground))]
+    focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]
+    placeholder:text-[hsl(var(--muted-foreground))];
+  }
+
+  .select {
+    @apply bg-[hsl(var(--muted))] border border-[hsl(var(--border))]
+    rounded-lg px-3 py-2 text-[hsl(var(--foreground))]
+    focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))];
+  }
+}
