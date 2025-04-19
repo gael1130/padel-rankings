@@ -294,7 +294,7 @@ export async function POST(request: Request) {
     
     // Check for update errors
     let hasUpdateError = false;
-    const failedUpdates = [];
+    const failedUpdates: string[] = [];
     
     playerUpdateResults.forEach((result) => {
       if (result.error) {
