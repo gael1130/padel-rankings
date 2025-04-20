@@ -49,11 +49,11 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
   );
   
   return (
-    <div>
+    <div className="bg-gray-900 text-gray-100">
       <h2 className="text-2xl font-semibold mb-4">Match History</h2>
       
       {matches.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-gray-400">
           No matches recorded yet
         </div>
       ) : (
@@ -62,10 +62,10 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
             {currentMatches.map((match) => (
               <div
                 key={match.id}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+                className="border border-gray-700 rounded-lg p-4"
               >
                 <div className="flex flex-col md:flex-row mb-2 gap-2">
-                  <div className="text-sm text-gray-500 mr-2">
+                  <div className="text-sm text-gray-400 mr-2">
                     {format(new Date(match.date), "dd/MM/yyyy HH 'h' mm")}
                   </div>
                   <div className="flex items-center text-yellow-500">
@@ -81,21 +81,29 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className={`p-3 rounded-md ${
                     match.winner === "team1"
-                      ? "bg-green-100 dark:bg-green-900"
-                      : "bg-gray-100 dark:bg-gray-800"
+                      ? "bg-green-900 text-green-100"
+                      : "bg-gray-800 text-gray-100 border border-gray-700"
                   }`}>
                     <div className="font-medium mb-1">Team 1</div>
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <div>{match.team1[0].name}</div>
-                        <div className="text-sm">
+                        <div className={`text-sm ${
+                          match.eloChanges[match.team1[0].id] > 0 
+                            ? "text-green-400" 
+                            : "text-red-400"
+                        }`}>
                           {match.eloChanges[match.team1[0].id] > 0 ? "+" : ""}
                           {match.eloChanges[match.team1[0].id]} ELO
                         </div>
                       </div>
                       <div>
                         <div>{match.team1[1].name}</div>
-                        <div className="text-sm">
+                        <div className={`text-sm ${
+                          match.eloChanges[match.team1[1].id] > 0 
+                            ? "text-green-400" 
+                            : "text-red-400"
+                        }`}>
                           {match.eloChanges[match.team1[1].id] > 0 ? "+" : ""}
                           {match.eloChanges[match.team1[1].id]} ELO
                         </div>
@@ -105,21 +113,29 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
   
                   <div className={`p-3 rounded-md ${
                     match.winner === "team2"
-                      ? "bg-green-100 dark:bg-green-900"
-                      : "bg-gray-100 dark:bg-gray-800"
+                      ? "bg-green-900 text-green-100"
+                      : "bg-gray-800 text-gray-100 border border-gray-700"
                   }`}>
                     <div className="font-medium mb-1">Team 2</div>
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <div>{match.team2[0].name}</div>
-                        <div className="text-sm">
+                        <div className={`text-sm ${
+                          match.eloChanges[match.team2[0].id] > 0 
+                            ? "text-green-400" 
+                            : "text-red-400"
+                        }`}>
                           {match.eloChanges[match.team2[0].id] > 0 ? "+" : ""}
                           {match.eloChanges[match.team2[0].id]} ELO
                         </div>
                       </div>
                       <div>
                         <div>{match.team2[1].name}</div>
-                        <div className="text-sm">
+                        <div className={`text-sm ${
+                          match.eloChanges[match.team2[1].id] > 0 
+                            ? "text-green-400" 
+                            : "text-red-400"
+                        }`}>
                           {match.eloChanges[match.team2[1].id] > 0 ? "+" : ""}
                           {match.eloChanges[match.team2[1].id]} ELO
                         </div>
@@ -135,7 +151,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
           {totalPages > 1 && (
             <div className="flex justify-center mt-4 gap-2">
               <button
-                className="btn-secondary btn-sm"
+                className="bg-gray-800 text-gray-200 px-2 py-1 rounded disabled:opacity-50"
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
@@ -147,7 +163,7 @@ const MatchHistory: React.FC<MatchHistoryProps> = ({
               </span>
               
               <button
-                className="btn-secondary btn-sm"
+                className="bg-gray-800 text-gray-200 px-2 py-1 rounded disabled:opacity-50"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >
