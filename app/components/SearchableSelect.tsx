@@ -64,21 +64,21 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
   return (
     <div className="relative" ref={dropdownRef}>
       <div 
-        className="input flex items-center justify-between cursor-pointer"
+        className="flex items-center justify-between cursor-pointer bg-gray-800 border border-gray-700 text-gray-100 p-2 rounded-md"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={selectedOption ? "" : "text-gray-400"}>
+        <span className={selectedOption ? "text-gray-100" : "text-gray-400"}>
           {selectedOption ? selectedOption.name : placeholder}
         </span>
-        <FaSearch className="text-gray-500" />
+        <FaSearch className="text-gray-400" />
       </div>
       
       {isOpen && (
-        <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md shadow-lg">
+        <div className="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
           <div className="p-2">
             <input
               type="text"
-              className="input w-full"
+              className="w-full bg-gray-900 border border-gray-700 text-gray-100 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               placeholder="Search..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -89,14 +89,14 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
           
           <div className="max-h-60 overflow-y-auto">
             {filteredOptions.length === 0 ? (
-              <div className="px-4 py-2 text-gray-500">No results found</div>
+              <div className="px-4 py-2 text-gray-400">No results found</div>
             ) : (
               filteredOptions.map((option) => (
                 <div
                   key={option.id}
                   className={`
-                    px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700
-                    ${option.id === value ? 'bg-blue-50 dark:bg-blue-900' : ''}
+                    px-4 py-2 cursor-pointer hover:bg-gray-700
+                    ${option.id === value ? 'bg-blue-900 text-blue-100' : 'text-gray-100'}
                   `}
                   onClick={() => {
                     onChange(option.id);
@@ -105,7 +105,7 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
                   }}
                 >
                   <div className="font-medium">{option.name}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-400">
                     ELO: {option.elo} | W: {option.wins} | M: {option.matches}
                   </div>
                 </div>
